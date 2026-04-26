@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Holdout</title>
+  <meta name="description" content="Holdout collects no user data. Everything stays on your device. Full privacy policy." />
+  <link rel="canonical" href="https://novaventuresco.github.io/holdout/privacy/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0D0D0D;
+      --amber:      #F5A623;
+      --text:       #F0F0F0;
+      --text-muted: #888888;
+      --border:     rgba(245, 166, 35, 0.15);
+      --font:       'Inter', system-ui, -apple-system, sans-serif;
+      --max-w:      640px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    nav {
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-brand:hover { text-decoration: none; }
+
+    .nav-back {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--amber); text-decoration: none; }
+
+    /* ─── CONTENT ───────────────────────────────────────────── */
+    .page-content {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .page-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .effective-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 56px;
+    }
+
+    /* Summary callout */
+    .summary-box {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 52px;
+      background: rgba(245, 166, 35, 0.04);
+    }
+
+    .summary-box p {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .summary-box strong { color: var(--text); }
+
+    /* Policy sections */
+    .policy-section { margin-bottom: 48px; }
+
+    .policy-section h2 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+    }
+
+    .policy-section ul li {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .policy-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      opacity: 0.45;
+      font-size: 0.78rem;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .footer-brand:hover { text-decoration: none; color: var(--text-muted); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 24px; }
+      .page-content { padding: 60px 24px 80px; }
+      footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../" class="nav-brand">Holdout</a>
+    <a href="../" class="nav-back">← Back</a>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="page-content">
+
+    <p class="page-label">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="effective-date">Effective: April 2026</p>
+
+    <div class="summary-box">
+      <p><strong>The short version:</strong> Holdout collects no data from you. Nothing leaves your device. There are no accounts, no analytics, no third parties, and no network requests.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>What we collect</h2>
+      <p>Nothing. Holdout does not collect, transmit, or store any personal information, usage data, analytics, or identifiers. There is no backend server. No data is sent anywhere.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>What is stored on your device</h2>
+      <p>The app uses iOS local storage (AsyncStorage) to save two categories of information, entirely on your device:</p>
+      <ul>
+        <li>Session records — the outcome, duration, and timestamp of sessions you run.</li>
+        <li>Preferences — your selected theme and first-run onboarding state.</li>
+      </ul>
+      <p>This data never leaves your phone. It is not synced to iCloud, not backed up to any server, and not accessible to Nova Ventures Co. or any third party. Deleting the app removes it entirely.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Analytics and tracking</h2>
+      <p>None. The app contains no analytics SDK, no crash reporter, no advertising network, and no tracking of any kind. Apple's own App Store review processes may collect standard metrics (install count, crash reports) subject to Apple's own privacy policy, which is separate from ours.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Third parties</h2>
+      <p>None. Holdout does not share data with any third party because no data is collected. There are no embedded SDKs from advertising, analytics, or social platforms.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Network requests</h2>
+      <p>The app makes no network requests. It works entirely offline and requires no internet connection at any time.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Children's privacy</h2>
+      <p>Holdout is rated 4+ on the App Store. Because the app collects no data from any user, there is no special handling required for users under 13. No personal information from children — or anyone — is collected or transmitted.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Changes to this policy</h2>
+      <p>If this policy changes in a material way, the updated version will be posted at this URL with a revised effective date. Because no data is collected, changes are unlikely to affect you.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Contact</h2>
+      <p>Questions about this policy can be sent to: <a href="mailto:support@novaventuresco.com">support@novaventuresco.com</a></p>
+      <p>Holdout is developed and published by Nova Ventures Co.</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="../" class="footer-brand">Holdout</a>
+    <span class="footer-copy">© 2026 Nova Ventures Co.</span>
+  </footer>
+
+</body>
+</html>
 
