@@ -144,7 +144,6 @@
     .hero-phone {
       flex-shrink: 0;
       width: 260px;
-      height: 500px;
       border-radius: 38px; overflow: hidden;
       box-shadow:
         0 40px 100px rgba(0,0,0,0.85),
@@ -169,7 +168,6 @@
     .phone-frame {
       flex-shrink: 0;
       width: 260px;
-      height: 420px;
       border-radius: 36px; overflow: hidden;
       box-shadow:
         0 24px 64px rgba(0,0,0,0.8),
@@ -178,16 +176,6 @@
     .phone-frame img {
       width: 100%; height: auto;
       display: block;
-    }
-
-    /* History screen: unconstrained — shows the full screen naturally */
-    .phone-frame.full-height {
-      height: auto;
-    }
-    .phone-frame.full-height img {
-      height: auto;
-      object-fit: unset;
-      object-position: unset;
     }
 
     .feature-copy { flex: 1; }
@@ -294,14 +282,10 @@
       .hero-inner { flex-direction: column; gap: 48px; text-align: center; }
       .hero-copy { display: flex; flex-direction: column; align-items: center; }
       .hero-sub { max-width: none; }
-      .hero-phone { width: 220px; height: 420px; }
-      .hero-phone img { margin-top: -41px; }
+      .hero-phone { width: 220px; }
       .features { padding: 0 24px; }
       .feature-row { flex-direction: column !important; gap: 36px; padding: 72px 0; text-align: center; }
-      .phone-frame { width: 220px; height: 356px; }
-      .phone-frame.full-height { height: auto; }
-      .img-void { margin-top: -97px; }
-      .img-glacier { margin-top: -85px; }
+      .phone-frame { width: 220px; }
       .themes { padding: 72px 24px; }
       .science { padding: 72px 24px; }
       .faq { padding: 72px 24px; }
@@ -340,7 +324,7 @@
       </div>
       <!-- FIRE theme: orb in center, amber pressing from all sides -->
       <div class="hero-phone reveal d2">
-        <img src="images/IMG_1220.png" alt="Holdout fire theme — amber craving force pressing in from the edges, cool center holding" style="margin-top: -48px" />
+        <img src="images/IMG_1220.png" alt="Holdout fire theme — amber craving force pressing in from the edges, cool center holding" />
       </div>
     </div>
   </section>
@@ -352,8 +336,6 @@
     <div class="feature-row reveal">
       <div class="phone-frame">
         <img src="images/IMG_1223.png"
-             class="img-void"
-             style="margin-top: -115px"
              alt="Holdout void theme — deep purple craving force surrounding a bright white center" />
       </div>
       <div class="feature-copy">
@@ -368,8 +350,6 @@
     <div class="feature-row flip reveal">
       <div class="phone-frame">
         <img src="images/IMG_1231.png"
-             class="img-glacier"
-             style="margin-top: -101px"
              alt="Holdout glacier theme — coach line: Every minute you don't act on it, it gets a little less" />
       </div>
       <div class="feature-copy">
@@ -382,7 +362,7 @@
 
     <!-- Row 3: History — shown full-height, no crop needed -->
     <div class="feature-row reveal">
-      <div class="phone-frame full-height">
+      <div class="phone-frame">
         <img src="images/IMG_1234.png"
              alt="Holdout history screen — win rate, streak, and a log of every session" />
       </div>
