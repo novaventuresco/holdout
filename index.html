@@ -4,12 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Holdout — Hold Through the Urge</title>
-  <meta name="description" content="A 20-minute visual craving timer for iPhone. No account. Nothing leaves your phone. Free to start." />
-  <meta name="keywords" content="craving timer, urge surfing, impulse control, dopamine, habit, urge timer, craving app, free iPhone app" />
+  <meta name="description" content="A 20-minute craving timer for iPhone. Watch the urge lose ground while you hold. Free to download. No account. Nothing leaves your phone." />
+  <meta name="keywords" content="craving timer, urge surfing, impulse control, dopamine, habit, craving app, 20 minute timer, craving relief, urge timer, iPhone" />
   <link rel="canonical" href="https://novaventuresco.github.io/holdout/" />
 
+  <link rel="icon" href="images/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/icon.png" />
+
   <meta property="og:title" content="Holdout — Hold Through the Urge" />
-  <meta property="og:description" content="A 20-minute visual craving timer. Watch the urge lose ground while you hold." />
+  <meta property="og:description" content="A 20-minute craving timer. Watch the urge lose ground while you hold." />
+  <meta property="og:image" content="https://novaventuresco.github.io/holdout/images/IMG_1220.png" />
   <meta property="og:url" content="https://novaventuresco.github.io/holdout/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -25,33 +29,24 @@
     "name": "Holdout",
     "operatingSystem": "iOS",
     "applicationCategory": "HealthApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "A 20-minute visual craving timer for iPhone. No account. Nothing leaves your phone.",
-    "author": {
-      "@type": "Organization",
-      "name": "Nova Ventures Co."
-    }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "A 20-minute craving timer for iPhone. No account. Nothing leaves your phone.",
+    "author": { "@type": "Organization", "name": "Nova Ventures Co." }
   }
   </script>
 
   <style>
-    /* ─── RESET & BASE ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg:         #0D0D0D;
+      --bg-raised:  #111111;
       --amber:      #F5A623;
       --amber-dark: #E8630A;
       --text:       #F0F0F0;
-      --text-muted: #888888;
-      --border:     rgba(245, 166, 35, 0.15);
+      --muted:      #888888;
+      --border:     rgba(245, 166, 35, 0.12);
       --font:       'Inter', system-ui, -apple-system, sans-serif;
-      --radius:     12px;
-      --max-w:      680px;
     }
 
     html { scroll-behavior: smooth; }
@@ -67,380 +62,250 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* ─── SCROLL ANIMATIONS ────────────────────────────────── */
+    /* Scroll reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(.16,1,.3,1),
-                  transform 0.7s cubic-bezier(.16,1,.3,1);
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
     }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
 
-    /* ─── NAV ───────────────────────────────────────────────── */
+    /* NAV */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(13, 13, 13, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(13,13,13,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       transition: border-color 0.3s;
     }
-
-    .nav-brand {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text);
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-icon { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; flex-shrink: 0; }
+    .nav-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .nav-name {
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text);
     }
-
     .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--amber);
-      color: #0D0D0D;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 9px 20px;
-      border-radius: 100px;
-      letter-spacing: 0.01em;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--amber); color: #0D0D0D;
+      font-size: 0.82rem; font-weight: 600;
+      padding: 9px 20px; border-radius: 100px;
       transition: background 0.2s, transform 0.15s;
     }
     .nav-cta:hover { background: var(--amber-dark); transform: translateY(-1px); }
     .nav-cta svg { width: 14px; height: 14px; fill: #0D0D0D; flex-shrink: 0; }
 
-    /* ─── HERO ──────────────────────────────────────────────── */
+    /* HERO */
     .hero {
-      min-height: 92vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 40px 80px;
+      padding: 80px 40px;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .hero-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 32px;
+    .hero-inner {
+      display: flex; align-items: center; gap: 80px;
+      max-width: 960px; width: 100%;
     }
-
+    .hero-copy { flex: 1; }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 20px;
+    }
     .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      max-width: 640px;
-      margin-bottom: 24px;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 20px;
     }
-
     .hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      max-width: 460px;
-      margin-bottom: 52px;
+      font-size: 1rem; line-height: 1.78;
+      color: var(--muted); max-width: 400px; margin-bottom: 36px;
     }
-
-    /* CSS amber orb — visual metaphor for the app */
-    .orb-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 52px;
-      flex-shrink: 0;
-    }
-
-    .orb-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle at center,
-        transparent 30%,
-        rgba(245, 166, 35, 0.05) 48%,
-        rgba(232, 99, 10, 0.20) 68%,
-        rgba(232, 99, 10, 0.52) 84%,
-        rgba(245, 166, 35, 0.68) 100%
-      );
-      animation: pulse-ring 4s ease-in-out infinite;
-    }
-
-    .orb-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 66px;
-      height: 66px;
-      border-radius: 50%;
-      background: radial-gradient(circle,
-        rgba(210, 235, 245, 0.96) 0%,
-        rgba(140, 195, 220, 0.65) 55%,
-        transparent 100%
-      );
-      filter: blur(2px);
-      animation: pulse-center 4s ease-in-out infinite;
-    }
-
-    @keyframes pulse-ring {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.05); opacity: 0.82; }
-    }
-    @keyframes pulse-center {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      50%       { transform: translate(-50%, -50%) scale(1.1); }
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .btn-appstore {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--amber);
-      color: #0D0D0D;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 100px;
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--amber); color: #0D0D0D;
+      font-size: 0.88rem; font-weight: 600;
+      padding: 13px 26px; border-radius: 100px;
       transition: background 0.2s, transform 0.15s;
-    }
-    .btn-appstore:hover { background: var(--amber-dark); transform: translateY(-2px); }
-    .btn-appstore svg { width: 18px; height: 18px; fill: #0D0D0D; flex-shrink: 0; }
-
-    .hero-trust {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-    .hero-trust span { display: inline-block; margin: 0 6px; opacity: 0.5; }
-
-    /* ─── SECTION SHARED ────────────────────────────────────── */
-    section { padding: 100px 40px; }
-
-    .section-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 20px;
-    }
-
-    .section-divider {
-      width: 40px;
-      height: 1px;
-      background: var(--amber);
-      margin: 0 auto 0;
-      opacity: 0.4;
-    }
-
-    section h2 {
-      font-size: clamp(1.7rem, 3vw, 2.2rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    section p { font-size: 1rem; line-height: 1.75; color: var(--text-muted); }
-
-    /* ─── MECHANIC SECTION ──────────────────────────────────── */
-    .mechanic {
-      background: #111111;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .mechanic-intro {
-      max-width: 520px;
-      margin: 0 auto 72px;
-    }
-    .mechanic-intro h2 { margin-bottom: 16px; }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .step {
-      padding: 28px 22px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-align: left;
-    }
-
-    .step-number {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--amber);
       margin-bottom: 14px;
-      opacity: 0.8;
+    }
+    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-2px); }
+    .btn-primary svg { width: 16px; height: 16px; fill: #0D0D0D; flex-shrink: 0; }
+    .hero-trust {
+      display: block; font-size: 0.78rem;
+      color: var(--muted); letter-spacing: 0.02em;
+    }
+    .hero-trust span { display: inline-block; margin: 0 5px; opacity: 0.4; }
+
+    /* Hero phone */
+    .hero-phone {
+      flex-shrink: 0;
+      width: 260px;
+      height: 500px;
+      border-radius: 38px; overflow: hidden;
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 0 80px rgba(245,166,35,0.12);
+    }
+    .hero-phone img {
+      width: 100%; height: auto;
+      display: block;
     }
 
-    .step h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.35;
+    /* FEATURE ROWS */
+    .features { padding: 0 40px; }
+    .feature-row {
+      display: flex; align-items: center; gap: 80px;
+      max-width: 960px; margin: 0 auto;
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+    .feature-row.flip { flex-direction: row-reverse; }
+
+    .phone-frame {
+      flex-shrink: 0;
+      width: 260px;
+      height: 420px;
+      border-radius: 36px; overflow: hidden;
+      box-shadow:
+        0 24px 64px rgba(0,0,0,0.8),
+        0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .phone-frame img {
+      width: 100%; height: auto;
+      display: block;
     }
 
-    .step p {
-      font-size: 0.87rem;
-      line-height: 1.65;
-      color: var(--text-muted);
+    /* History screen: unconstrained — shows the full screen naturally */
+    .phone-frame.full-height {
+      height: auto;
+    }
+    .phone-frame.full-height img {
+      height: auto;
+      object-fit: unset;
+      object-position: unset;
     }
 
-    /* ─── SCIENCE SECTION ───────────────────────────────────── */
-    .science { text-align: center; }
-
-    .science-inner {
-      max-width: 540px;
-      margin: 0 auto;
+    .feature-copy { flex: 1; }
+    .feature-tag {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 14px; opacity: 0.85;
     }
-
-    .science-pull {
-      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
-      font-weight: 500;
-      line-height: 1.55;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
+    .feature-copy h2 {
+      font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+      font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 18px;
     }
-
-    .science-pull em { color: var(--amber); font-style: normal; }
-
-    .science-body {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      margin-bottom: 20px;
+    .feature-copy p {
+      font-size: 0.95rem; line-height: 1.78;
+      color: var(--muted); margin-bottom: 12px;
     }
+    .feature-copy p:last-child { margin-bottom: 0; }
 
-    .science-source {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      opacity: 0.5;
-    }
-
-    /* ─── FAQ SECTION ───────────────────────────────────────── */
-    .faq {
-      background: #111111;
+    /* THEMES */
+    .themes {
+      padding: 100px 40px; text-align: center;
+      background: var(--bg-raised);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
-    .faq-header {
-      max-width: var(--max-w);
-      margin: 0 auto 56px;
+    .themes-inner { max-width: 520px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 20px;
     }
-
-    .faq-list {
-      max-width: var(--max-w);
-      margin: 0 auto;
+    .themes-inner h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 16px;
     }
+    .themes-inner > p {
+      font-size: 0.97rem; line-height: 1.75; color: var(--muted); margin-bottom: 48px;
+    }
+    .themes-phone {
+      width: 220px; margin: 0 auto;
+      border-radius: 32px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .themes-phone img { width: 100%; height: auto; display: block; }
 
-    .faq-item {
-      padding: 26px 0;
+    /* SCIENCE */
+    .science { padding: 100px 40px; text-align: center; }
+    .science-inner { max-width: 540px; margin: 0 auto; }
+    .science-pull {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-weight: 500; line-height: 1.6; color: var(--text);
+      letter-spacing: -0.01em; margin-bottom: 20px;
+    }
+    .science-pull em { color: var(--amber); font-style: normal; }
+    .science-body { font-size: 0.95rem; line-height: 1.75; color: var(--muted); margin-bottom: 20px; }
+    .science-source { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.04em; opacity: 0.45; }
+
+    .science-links { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
+    .science-links a { color: var(--amber); }
+    .science-links a:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .faq {
+      padding: 100px 40px;
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
+    .faq-header { max-width: 680px; margin: 0 auto 56px; }
+    .faq-header h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--text);
+    }
+    .faq-list { max-width: 680px; margin: 0 auto; }
+    .faq-item { padding: 26px 0; border-bottom: 1px solid var(--border); }
     .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-item h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
+    .faq-item p { font-size: 0.9rem; line-height: 1.72; color: var(--muted); }
 
-    .faq-item h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-
-    .faq-item p {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--text-muted);
-    }
-
-    /* ─── FOOTER ────────────────────────────────────────────── */
+    /* FOOTER */
     footer {
       padding: 48px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
       border-top: 1px solid var(--border);
     }
-
-    .footer-brand {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-icon { width: 24px; height: 24px; border-radius: 6px; overflow: hidden; }
+    .footer-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .footer-name {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--muted);
     }
-
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .footer-links a {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      transition: color 0.2s;
-    }
+    .footer-links { display: flex; align-items: center; gap: 28px; }
+    .footer-links a { font-size: 0.82rem; color: var(--muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--amber); }
+    .footer-copy { font-size: 0.78rem; color: var(--muted); opacity: 0.45; }
 
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      opacity: 0.5;
-    }
-
-    /* ─── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 720px) {
-      nav { padding: 16px 24px; }
-      .hero { padding: 80px 24px 60px; min-height: auto; padding-top: 72px; }
-      section { padding: 72px 24px; }
+    /* RESPONSIVE */
+    @media (max-width: 780px) {
+      nav { padding: 14px 24px; }
+      .hero { padding: 64px 24px 72px; }
+      .hero-inner { flex-direction: column; gap: 48px; text-align: center; }
+      .hero-copy { display: flex; flex-direction: column; align-items: center; }
+      .hero-sub { max-width: none; }
+      .hero-phone { width: 220px; height: 420px; }
+      .hero-phone img { margin-top: -41px; }
+      .features { padding: 0 24px; }
+      .feature-row { flex-direction: column !important; gap: 36px; padding: 72px 0; text-align: center; }
+      .phone-frame { width: 220px; height: 356px; }
+      .phone-frame.full-height { height: auto; }
+      .img-void { margin-top: -97px; }
+      .img-glacier { margin-top: -85px; }
+      .themes { padding: 72px 24px; }
+      .science { padding: 72px 24px; }
+      .faq { padding: 72px 24px; }
       footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
-      .steps { grid-template-columns: 1fr; gap: 14px; }
-      .orb-container { width: 160px; height: 160px; }
-      .footer-links { flex-wrap: wrap; gap: 20px; }
     }
   </style>
 </head>
@@ -448,104 +313,147 @@
 
   <!-- NAV -->
   <nav>
-    <span class="nav-brand">Holdout</span>
+    <div class="nav-brand">
+      <div class="nav-icon"><img src="images/icon.png" alt="Holdout" /></div>
+      <span class="nav-name">Holdout</span>
+    </div>
     <a href="#" class="nav-cta" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.78 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.78 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
       App Store
     </a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-label reveal">iPhone · Free</p>
-    <h1 class="reveal reveal-d1">Most cravings end<br />before you act on them.</h1>
-    <p class="hero-sub reveal reveal-d2">If you're going to reach for your phone anyway, this is what you open. A 20-minute visual timer that gives the urge somewhere to go.</p>
-
-    <div class="orb-container reveal reveal-d3" aria-hidden="true">
-      <div class="orb-ring"></div>
-      <div class="orb-center"></div>
-    </div>
-
-    <div class="hero-actions reveal reveal-d3">
-      <a href="#" class="btn-appstore" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.78 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-        </svg>
-        Download on the App Store
-      </a>
-      <p class="hero-trust">Free <span>·</span> No account <span>·</span> Nothing leaves your phone</p>
-    </div>
-  </section>
-
-  <div class="section-divider" aria-hidden="true"></div>
-
-  <!-- HOW IT WORKS -->
-  <section class="mechanic">
-    <div class="mechanic-intro">
-      <p class="section-label reveal">How it works</p>
-      <h2 class="reveal reveal-d1">Watch the urge<br />lose ground.</h2>
-      <p class="reveal reveal-d2">The whole app is one screen. No menus. No logging. Just a timer that makes the window visible.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <p class="step-number">01</p>
-        <h3>The amber is the craving</h3>
-        <p>When you open a session, amber presses in from every edge of the screen. That pressure is the urge — visible, measurable, real.</p>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow reveal">iPhone · Free</p>
+        <h1 class="reveal d1">Most cravings end on their own.<br>This is how you last long enough to see that.</h1>
+        <p class="hero-sub reveal d2">Open a session and an amber force closes in from the edges of the screen. That's the urge, given a shape. Your presence holds a cool center. Stay with it. Most cravings peak in the first ten minutes and fall off by twenty, whether you act on them or not. Holdout makes that window visible.</p>
+        <div class="reveal d3">
+          <a href="#" class="btn-primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.78 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg>
+            Download on the App Store
+          </a>
+          <span class="hero-trust">Free <span>·</span> No account <span>·</span> Nothing leaves your phone</span>
+        </div>
       </div>
-      <div class="step reveal reveal-d1">
-        <p class="step-number">02</p>
-        <h3>Your presence holds the center</h3>
-        <p>Staying on screen keeps a cool space at the center. Tilt your phone to hold it steady. The center is yours as long as you're here.</p>
-      </div>
-      <div class="step reveal reveal-d2">
-        <p class="step-number">03</p>
-        <h3>At 20 minutes, it retreats</h3>
-        <p>The amber pulls back. Session won. Every session — won or not — is logged so you can see what you've already held.</p>
+      <!-- FIRE theme: orb in center, amber pressing from all sides -->
+      <div class="hero-phone reveal d2">
+        <img src="images/IMG_1220.png" alt="Holdout fire theme — amber craving force pressing in from the edges, cool center holding" style="margin-top: -48px" />
       </div>
     </div>
   </section>
 
-  <!-- THE SCIENCE -->
+  <!-- FEATURE ROWS -->
+  <div class="features">
+
+    <!-- Row 1: The battle visual — VOID theme (deep purple, white orb) -->
+    <div class="feature-row reveal">
+      <div class="phone-frame">
+        <img src="images/IMG_1223.png"
+             class="img-void"
+             style="margin-top: -115px"
+             alt="Holdout void theme — deep purple craving force surrounding a bright white center" />
+      </div>
+      <div class="feature-copy">
+        <p class="feature-tag">The visual</p>
+        <h2>The urge, given a shape.</h2>
+        <p>When you start a session, an amber force presses in from every edge. The pressure represents the craving, not as a concept but as something you can watch move. Your presence on screen holds the center. The more you stay, the more it holds.</p>
+        <p>Most people say it helps to have something to look at. Not to distract. Just to make the craving feel like an object rather than an emergency.</p>
+      </div>
+    </div>
+
+    <!-- Row 2: The coach — GLACIER theme (blue + coach pill at bottom) -->
+    <div class="feature-row flip reveal">
+      <div class="phone-frame">
+        <img src="images/IMG_1231.png"
+             class="img-glacier"
+             style="margin-top: -101px"
+             alt="Holdout glacier theme — coach line: Every minute you don't act on it, it gets a little less" />
+      </div>
+      <div class="feature-copy">
+        <p class="feature-tag">The coach</p>
+        <h2>Someone checks in at the hardest minutes.</h2>
+        <p>Minute 4 is usually when people give in. The coach shows up at minute 4, 8, 12, and 16 with a calibration, not a pep talk. A sentence about where you are in the window, based on what's actually happening.</p>
+        <p>Tap any time you need a read. It doesn't tell you how to feel. It tells you where you are.</p>
+      </div>
+    </div>
+
+    <!-- Row 3: History — shown full-height, no crop needed -->
+    <div class="feature-row reveal">
+      <div class="phone-frame full-height">
+        <img src="images/IMG_1234.png"
+             alt="Holdout history screen — win rate, streak, and a log of every session" />
+      </div>
+      <div class="feature-copy">
+        <p class="feature-tag">The record</p>
+        <h2>Every session you've held is recorded.</h2>
+        <p>Win rate, streak, duration. Every time you ran the clock. Not to punish you for the sessions that ended early. To show you that you've been here before and made it through.</p>
+        <p>That's the thing most people forget when a craving hits hard.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- THEMES -->
+  <section class="themes">
+    <div class="themes-inner">
+      <p class="section-tag reveal">Visual themes</p>
+      <h2 class="reveal d1">Nine environments<br>to run the clock in.</h2>
+      <p class="reveal d2">Fire, void, ember, glacier, abyss, solar, aurora, dusk, nebula. Different atmosphere, same mechanic. Three are free. Six more are a one-time $4.99 unlock.</p>
+      <div class="themes-phone reveal d3">
+        <img src="images/IMG_1233.png" alt="Holdout home screen showing all nine visual theme options" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE -->
   <section class="science">
-    <div class="science-inner section-inner">
-      <p class="section-label reveal">The science</p>
-      <p class="science-pull reveal reveal-d1">Habit-driven urges run on dopamine. Dopamine doesn't keep building forever — the impulse <em>peaks and falls on its own,</em> usually within 15 to 20 minutes, whether you act on it or not.</p>
-      <p class="science-body reveal reveal-d2">Most people give in before they see that happen. The app makes the window visible.</p>
-      <p class="science-source reveal reveal-d3">Urge surfing · ACT research and habit-loop literature</p>
+    <div class="science-inner">
+      <p class="section-tag reveal">The science</p>
+      <p class="science-pull reveal d1">What's happening when a craving hits is mostly neurochemical. Dopamine spikes in anticipation of reward. That's the pull you feel. But it doesn't hold that level. It <em>drops, usually within 15 to 20 minutes,</em> whether you act on it or not.</p>
+      <p class="science-body reveal d2">That's what the 20-minute window is based on. If you can get past the peak, the craving doesn't disappear, but it gets smaller. Most people never see that happen because they give in before the peak passes.</p>
+      <p class="science-links reveal d2">
+        <a href="how-long-do-cravings-last/">How long do cravings actually last</a> &nbsp;·&nbsp;
+        <a href="urge-surfing/">What is urge surfing</a>
+      </p>
+      <p class="science-source reveal d3">Urge surfing · ACT research and habit-loop literature</p>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="faq">
     <div class="faq-header">
-      <p class="section-label reveal">Questions</p>
-      <h2 class="reveal reveal-d1">A few things<br />people ask.</h2>
+      <p class="section-tag reveal">Questions</p>
+      <h2 class="reveal d1">A few things people ask.</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal">
         <h3>Is it free?</h3>
-        <p>Yes. The app is free to download and use. There are nine visual themes — three come with the app. The remaining six are a one-time $4.99 unlock if you want them. No subscription, nothing recurring.</p>
+        <p>Yes. Free to download and use. Nine visual themes, three included. The other six are a one-time $4.99 unlock. No subscription.</p>
       </div>
-      <div class="faq-item reveal reveal-d1">
-        <h3>Is my data private?</h3>
-        <p>Nothing leaves your phone. Session records and preferences are stored locally on your device using iOS's built-in storage. There are no analytics, no crash reporting, no third parties, and no network requests. The app works entirely offline.</p>
-      </div>
-      <div class="faq-item reveal reveal-d2">
+      <div class="faq-item reveal d1">
         <h3>What kind of cravings is this for?</h3>
-        <p>The mechanic is general — it does not target any specific behavior. People use it for food cravings, shopping impulses, and similar urge-driven moments where a 20-minute gap is all they need. It is not a medical product and does not treat any condition.</p>
+        <p>Most people use it for food, cigarettes, alcohol, shopping impulses, or compulsive phone habits. The mechanic works for anything where a 20-minute gap is what you need. It is not a medical product and does not treat any condition.</p>
       </div>
-      <div class="faq-item reveal reveal-d3">
+      <div class="faq-item reveal d2">
+        <h3>Is my data private?</h3>
+        <p>Nothing leaves your phone. Session records and preferences are stored locally on your device. No analytics, no accounts, no network requests at any point.</p>
+      </div>
+      <div class="faq-item reveal d3">
         <h3>Does it work offline?</h3>
-        <p>Entirely. There is no login, no sync, no network required. You open it, run the session, and everything stays on your device.</p>
+        <p>Entirely. No login, no sync, no internet connection needed at any point.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-brand">Holdout</span>
+    <div class="footer-brand">
+      <div class="footer-icon"><img src="images/icon.png" alt="Holdout" /></div>
+      <span class="footer-name">Holdout</span>
+    </div>
     <nav class="footer-links" aria-label="Footer">
       <a href="privacy/">Privacy Policy</a>
       <a href="#" target="_blank" rel="noopener">App Store</a>
@@ -558,61 +466,27 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is Holdout free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The app is free to download and use. There are nine visual themes — three come with the app. The remaining six are a one-time $4.99 unlock. No subscription."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is my data private?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nothing leaves your phone. Session records and preferences are stored locally using iOS built-in storage. No analytics, no crash reporting, no third parties, no network requests."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What kind of cravings is Holdout for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The mechanic is general. People use it for food cravings, shopping impulses, and similar urge-driven moments. It is not a medical product and does not treat any condition."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Holdout work offline?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Entirely. No login, no sync, no network required. Everything stays on your device."
-        }
-      }
+      { "@type": "Question", "name": "Is Holdout free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Free to download and use. Nine visual themes, three included. The other six are a one-time $4.99 unlock. No subscription." } },
+      { "@type": "Question", "name": "What kind of cravings is Holdout for?", "acceptedAnswer": { "@type": "Answer", "text": "Most people use it for food, cigarettes, alcohol, shopping impulses, or compulsive phone habits. Not a medical product and does not treat any condition." } },
+      { "@type": "Question", "name": "Is my data private?", "acceptedAnswer": { "@type": "Answer", "text": "Nothing leaves your phone. Session records and preferences are stored locally. No analytics, no accounts, no network requests at any point." } },
+      { "@type": "Question", "name": "Does Holdout work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Entirely. No login, no sync, no internet connection needed at any point." } }
     ]
   }
   </script>
 
   <script>
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.1 }
     );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
       nav.style.borderBottomColor = window.scrollY > 10
-        ? 'rgba(245,166,35,0.28)'
-        : 'rgba(245,166,35,0.15)';
+        ? 'rgba(245,166,35,0.25)' : 'rgba(245,166,35,0.12)';
     }, { passive: true });
   </script>
 
