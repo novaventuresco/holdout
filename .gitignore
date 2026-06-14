@@ -1,0 +1,23 @@
+node_modules/
+.expo/
+dist/
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.env
+.env.local
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+
+# Claude Code — local/machine-specific settings
+.claude/settings.local.json

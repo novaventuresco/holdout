@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Craving Holdout: Urge Timer",
+    "slug": "holdout",
+    "owner": "novaventures",
+    "version": "1.0.0",
+    "orientation": "portrait",
+        "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0D0D"
+    },
+    "platforms": ["ios"],
+    "ios": {
+      "bundleIdentifier": "com.novaventuresco.holdout",
+      "buildNumber": "3",
+      "deploymentTarget": "15.0",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIRequiresFullScreen": true,
+        "CFBundleDisplayName": "Craving Holdout"
+      }
+    },
+    "plugins": ["expo-dev-client", "./plugins/withPrivacyManifest"],
+    "extra": {
+      "eas": {
+        "projectId": "15ca7a10-bc89-404c-a2f6-bed2934907cd"
+      }
+    }
+  }
+}
