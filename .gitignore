@@ -21,3 +21,6 @@ yarn-error.*
 
 # Claude Code — local/machine-specific settings
 .claude/settings.local.json
+
+# Large raw video source files — keep processed versions only
+assets/screenshots/AppPreview_raw.mp4
