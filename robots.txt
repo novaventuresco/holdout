@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://novaventuresco.github.io/holdout/sitemap.xml
